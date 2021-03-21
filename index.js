@@ -62,7 +62,7 @@ export function read(file) {
 }
 
 export function write(file, contents) {
-	return writeFileSync(file, contents);
+	return writeFileSync(file, contents, {encoding});
 }
 
 export function read_dir(path) {
