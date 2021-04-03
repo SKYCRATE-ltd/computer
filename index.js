@@ -8,6 +8,9 @@ import {
 	execSync,
 	spawn
 } from "child_process";
+import {
+	resolve
+} from "path";
 
 const encoding = "utf-8";
 
@@ -25,6 +28,10 @@ export function parent_dir(path) {
 	if (path.endsWith('/'))
 		path = path.substring(0, path.length - 1);
 	return path.split('/').slice(0, -1).join('/');
+}
+
+export function resolve_dir(...paths) {
+	return resolve(...paths);
 }
 
 export function exists(inode) {
