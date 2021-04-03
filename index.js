@@ -32,7 +32,7 @@ export function exists(inode) {
 }
 
 export function exec(cmd) {
-	return execSync(cmd);
+	return execSync(cmd, {encoding});
 }
 
 export function run(cmd, stdout, callback, stderr) {
