@@ -58,13 +58,13 @@ export function prompt(msg, def) {
 export function map(source, target) {
 	mkdir(parent_dir(target));
 	return !existsSync(target) ?
-		exec(`ln -s ${source} ${target}`) :
+		exec(`ln -fs ${source} ${target}`) :
 			`MAP EXISTS: ${source} -> ${target}`;
 }
 
 export function copy(source, target) {
 	mkdir(parent_dir(target));
-	return exec(`cp ${source} ${target}`);
+	return exec(`cp -f ${source} ${target}`);
 }
 
 export function read(file) {
