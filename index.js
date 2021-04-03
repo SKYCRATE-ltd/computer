@@ -35,6 +35,10 @@ export function exec(cmd) {
 	return execSync(cmd, {encoding}).trim();
 }
 
+export function is_sudo() {
+	return exec(`whoami`) === 'root';
+}
+
 export function run(cmd, stdout, callback, stderr) {
 	const proc = spawn(cmd);
 	stdout && proc.stdout.on('data', stdout);
