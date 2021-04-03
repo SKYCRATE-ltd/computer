@@ -54,7 +54,13 @@ export function prompt(msg, def) {
 export function map(source, target) {
 	mkdir(parent_dir(target));
 	return !existsSync(target) ?
-		run("ln", "-s", source, target) : `MAP EXISTS: ${source} -> ${target}`;
+		exec(`ln -s ${source} ${target}`) :
+			`MAP EXISTS: ${source} -> ${target}`;
+}
+
+export function copy(source, target) {
+	mkdir(parent_dir(target));
+	return exec(`cp ${source} ${target}`);
 }
 
 export function read(file) {
