@@ -55,7 +55,7 @@ export function run(cmd, stdout, callback, stderr) {
 }
 
 export function mkdir(path) {
-	return exec(`mkdir -p ${path}`);
+	return exec(`mkdir -p "${path}"`);
 }
 
 export function prompt(msg, def) {
@@ -64,14 +64,12 @@ export function prompt(msg, def) {
 
 export function map(source, target) {
 	mkdir(parent_dir(target));
-	return !existsSync(target) ?
-		exec(`ln -fs ${source} ${target}`) :
-			`MAP EXISTS: ${source} -> ${target}`;
+	return exec(`ln -fs "${source}" "${target}"`);
 }
 
 export function copy(source, target) {
 	mkdir(parent_dir(target));
-	return exec(`cp -f ${source} ${target}`);
+	return exec(`cp -f "${source}" "${target}"`);
 }
 
 export function read(file) {
@@ -88,7 +86,11 @@ export function read_dir(path) {
 
 export function touch(path) {
 	mkdir(parent_dir(path));
-	return exec(`touch ${path}`);
+	return exec(`touch "${path}"`);
+}
+
+export function del(path) {
+	return exec(`rm -rf "${path}"`);
 }
 
 export function readlines(file, _comment = '#') {
