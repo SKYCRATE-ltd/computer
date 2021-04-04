@@ -58,10 +58,6 @@ export function mkdir(path) {
 	return exec(`mkdir -p "${path}"`);
 }
 
-export function prompt(msg, def) {
-	// TODO: use blessed.js I guess
-}
-
 export function map(source, target) {
 	mkdir(parent_dir(target));
 	return exec(`ln -fs "${source}" "${target}"`);
@@ -100,4 +96,8 @@ export function readlines(file, _comment = '#') {
 			.filter(line => line)
 			.filter(line => !line.startsWith(_comment))
 			.map(line => truncate(line, _comment))
+}
+
+export function prompt(msg, def) {
+	// TODO: use blessed.js I guess
 }
