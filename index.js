@@ -25,6 +25,7 @@ export function truncate(line, delim) {
 }
 
 export function parent_dir(path) {
+	path = resolve_dir(path);
 	if (path.endsWith('/'))
 		path = path.substring(0, path.length - 1);
 	return path.split('/').slice(0, -1).join('/');
