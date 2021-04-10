@@ -73,6 +73,7 @@ export function read(file) {
 }
 
 export function write(file, contents) {
+	touch(file);
 	return writeFileSync(file, contents, {encoding});
 }
 
