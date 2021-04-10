@@ -42,6 +42,10 @@ export function exec(cmd) {
 	return execSync(cmd, {encoding}).trim();
 }
 
+export function cwd() {
+	return exec('pwd');
+}
+
 export function is_sudo() {
 	return exec(`whoami`) === 'root';
 }
