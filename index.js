@@ -50,6 +50,14 @@ export function is_sudo() {
 	return exec(`whoami`) === 'root';
 }
 
+export function is_installed(cmd) {
+	return exec(
+		`command -v ${cmd} >/dev/null 2>&1 || \
+			hash ${cmd} 2>/dev/null || \
+			type ${cmd} >/dev/null 2>&1 || \
+			return 1`);
+}
+
 export function run(cmd, stdout, callback, stderr) {
 	const proc = spawn(cmd);
 	stdout && proc.stdout.on('data', stdout);
