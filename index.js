@@ -58,6 +58,10 @@ export function is_installed(cmd) {
 			return 1`);
 }
 
+export function uuid() {
+	return exec('uuidgen');
+}
+
 export function run(cmd, stdout, callback, stderr) {
 	const proc = spawn(cmd);
 	stdout && proc.stdout.on('data', stdout);
