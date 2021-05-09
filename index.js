@@ -3,6 +3,7 @@ import {
 	readFileSync,
 	writeFileSync,
 	readdirSync,
+	lstatSync
 } from "fs";
 import {
 	execSync,
@@ -56,6 +57,14 @@ export function is_installed(cmd) {
 			hash ${cmd} 2>/dev/null || \
 			type ${cmd} >/dev/null 2>&1 || \
 			return 1`);
+}
+
+export function is_directory(path) {
+	return lstatSync(path).isDirectory();
+}
+
+export function is_file(path) {
+	return lstatSync(path).isFile();
 }
 
 export function uuid() {
