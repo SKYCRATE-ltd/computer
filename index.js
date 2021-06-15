@@ -52,11 +52,16 @@ export function is_sudo() {
 }
 
 export function is_installed(cmd) {
-	return exec(
+	try {
+		exec(
 		`command -v ${cmd} >/dev/null 2>&1 || \
 			hash ${cmd} 2>/dev/null || \
 			type ${cmd} >/dev/null 2>&1 || \
 			return 1`);
+	} catch (e) {
+		return false;
+	}
+	return true;
 }
 
 export function is_directory(path) {
